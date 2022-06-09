@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="bg-slate-900 text-white">
-<header class="border-b border-stone-800">
+<header class="border-b border-gray-800">
     <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
 
         <div class="flex flex-col lg:flex-row items-center">
@@ -38,7 +38,7 @@
     @yield('content')
 </main>
 
-<footer class="border-t border-stone-800">
+<footer class="border-t border-gray-800">
     <div class="container mx-auto px-4 py-6">
         Powered by <a href="#" class="text-lime-500 hover:text-lime-400">IGDB API</a>
     </div>
