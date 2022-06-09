@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mx-auto px-4">
-        <div class="flex border-b border-gray-800 pb-12">
+        <div class="flex border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
                 <img src="/" alt="cover" class="w-48 h-64 bg-gray-500">
             </div>
 
-            <div class="ml-12 mr-64">
-                <h2 class="font-semibold text-4xl">Final Fantasy VII</h2>
-                <div class="text-gray-400">
+            <div class="lg:ml-12 lg:mr-64">
+                <h2 class="font-semibold text-4xl mt-4 lg:mt-0">Final Fantasy VII</h2>
+                <div class="text-gray-400 mt-2">
                     <span>Adventure, RPG</span>
                     &middot;
                     <span>Square Enix</span>
@@ -33,7 +33,7 @@
                         <div class="ml-4 text-xs">Critic<br>Score</div>
                     </div>
 
-                    <div class="flex items-center space-x-4 ml-12">
+                    <div class="flex items-center space-x-4 mt-4 lg:mt-0 lg:ml-12">
                         <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
                             <a href="#" class="hover:text-gray-400">
                                 <svg class="w-5 h-5" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/>
@@ -112,7 +112,7 @@
 
         <div class="border-b border-gray-800 pb-12 mt-8">
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
-            <div class="grid grid-cols-3 gap-12 mt-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
                 <a href="#">
                     <img src="" alt=""
                          class="bg-gray-700 w-48 h-24 hover:opacity-75 transition-colors ease-in-out duration-150">

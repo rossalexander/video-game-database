@@ -1159,6 +1159,14 @@ video {
     margin-left: 4rem;
   }
 
+  .lg\:ml-12 {
+    margin-left: 3rem;
+  }
+
+  .lg\:mr-64 {
+    margin-right: 16rem;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -1173,6 +1181,10 @@ video {
 
   .lg\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:flex-row {
