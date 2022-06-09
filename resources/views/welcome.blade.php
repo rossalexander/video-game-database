@@ -5,7 +5,8 @@
     <div class="container mx-auto px-4">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Popular Games</h2>
         {{--        Grid--}}
-        <div class="grid grid-cols-6 gap-12 border-b border-stone-800 text-sm pb-16">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12 border-b border-stone-800 text-sm pb-16">
 
             {{--            Game--}}
             <div class="mt-8">
@@ -22,12 +23,14 @@
                 <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">Title of
                     Game</a>
                 <div class="text-stone-400">Platform</div>
-            </div> {{--    End Popular Games--}}
-        </div>
+            </div>
 
-        <div class="flex my-10">
+
+        </div>{{--    End Popular Games--}}
+
+        <div class="flex flex-col lg:flex-row my-10">
             {{--        Recently Reviewed--}}
-            <div class="w-3/4 mr-32">
+            <div class="w-full lg:w-3/4 mr-0 lg:mr-32">
                 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Recently Reviewed</h2>
 
                 <div class="space-y-12 mt-8">
@@ -48,7 +51,7 @@
                             <a href="" class="block text-lg font-semibold leading-tight hover:text-stone-400 mt-4">Final
                                 Fantasy VII Remake</a>
                             <div class="text-stone-400 mt-1">Playstation 4</div>
-                            <p class="mt-6 text-stone-400">
+                            <p class="mt-6 text-stone-400 hidden lg:block">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem beatae consequatur
                                 cumque itaque labore maiores modi mollitia necessitatibus perspiciatis quisquam?
                                 Consequatur dolores enim qui saepe. Aliquid atque culpa dignissimos doloremque eaque,
@@ -86,7 +89,7 @@
             </div>
 
             {{--        Most Anticipated--}}
-            <div class="w-1/4">
+            <div class="w-full lg:w-1/4 mt-12 lg:mt-0">
 
                 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Most Anticipated</h2>
                 <div class="space-y-10 mt-8">

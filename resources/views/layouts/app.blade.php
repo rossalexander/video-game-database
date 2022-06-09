@@ -7,21 +7,21 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="bg-slate-900 text-white">
-<header class="border-b border-gray-800">
-    <nav class="container mx-auto flex items-center justify-between px-4 py-6">
+<header class="border-b border-stone-800">
+    <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
 
-        <div class="flex items-center">
-            <a class="w-8 flex-none mr-8" href="/">
+        <div class="flex flex-col lg:flex-row items-center">
+            <a class="w-8 flex-none" href="/">
                 <img src="/media/video-game-database-logo.svg" alt="Video Game Database">
             </a>
-            <ul class="flex space-x-8">
+            <ul class="flex ml-0 lg:ml-16 mt-6 lg:mt-0 space-x-8">
                 <li><a href="#" class="hover:text-gray-400">Games</a></li>
                 <li><a href="#" class="hover:text-gray-400">Reviews</a></li>
                 <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
             </ul>
         </div>
 
-        <div class="flex items-center">
+        <div class="flex items-center mt-6 lg:mt-0">
             <div class="relative">
                 <input type="text" class="focus:shadow-outline bg-gray-800 text-sm rounded-full px-3 py-1 w-64"
                        placeholder="Search...">
