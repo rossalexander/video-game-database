@@ -17,22 +17,7 @@ class GameController extends Controller
     public function index()
     {
         $before = Carbon::now()->subMonths(2)->timestamp;
-        $after = Carbon::now()->addMonths(2)->timestamp;
         $current = Carbon::today()->timestamp;
-
-        $popularGames = Http::withHeaders(config('services.igdb'))
-            ->withBody(
-                "
-                fields name, first_release_date, platforms.abbreviation, cover.url, rating;
-            where first_release_date != null
-            & cover.url != null
-            & (first_release_date >= {$before} & first_release_date < {$after});
-            sort first_release_date desc;
-            limit 12;",
-                "text/plain"
-            )
-            ->post('https://api.igdb.com/v4/games')
-            ->json();
 
         $recentlyReviewed = Http::withHeaders(config('services.igdb'))
             ->withBody(
@@ -50,7 +35,6 @@ class GameController extends Controller
 
 //        dd($recentlyReviewed);
         return view('welcome', [
-            'popularGames' => $popularGames,
             'recentlyReviewed' => $recentlyReviewed,
         ]);
     }
