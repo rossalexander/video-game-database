@@ -36,7 +36,9 @@
 </header>
 
 <main class="py-8">
-    @yield('content')
+    <div class="container mx-auto px-4">
+        @yield('content')
+    </div>
 </main>
 
 <footer class="border-t border-gray-800">
