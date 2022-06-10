@@ -12,9 +12,7 @@
             <div class="text-gray-400 mt-2">
 
                 @if($game['genres'])
-                    <p>
-                        {{$game['genres']}}
-                    </p>
+                    <p>{{$game['genres']}}</p>
                 @endif
 
                 @if($game['involved-companies'])
@@ -31,10 +29,14 @@
                 {{--                    Member Score--}}
                 @if($game['member-rating'])
                     <div class="flex items-center">
-                        <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                {{$game['member-rating']}}
-                            </div>
+                        <div id="member-rating" class="w-16 h-16 bg-gray-800 rounded-full relative text-sm">
+                            @push('scripts')
+                                @include('rating', [
+                                            'slug' => 'member-rating',
+                                            'rating' => $game['member-rating'],
+                                            'event' => null,
+                                        ])
+                            @endpush
                         </div>
                         <div class="ml-4 text-xs">Member<br>Score</div>
                     </div>
@@ -43,11 +45,14 @@
                 {{--                    Critic Score--}}
                 @if($game['critic-rating'])
                     <div class="flex items-center ml-12">
-                        <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div
-                                class="font-semibold text-xs flex justify-center items-center h-full">
-                                {{$game['critic-rating']}}
-                            </div>
+                        <div id="critic-rating" class="w-16 h-16 bg-gray-800 rounded-full relative text-sm">
+                            @push('scripts')
+                                @include('rating', [
+                                            'slug' => 'critic-rating',
+                                            'rating' => $game['critic-rating'],
+                                            'event' => null,
+                                        ])
+                            @endpush
                         </div>
                         <div class="ml-4 text-xs">Critic<br>Score</div>
                     </div>
