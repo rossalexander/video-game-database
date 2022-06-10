@@ -18,7 +18,7 @@ class ComingSoon extends Component
         $this->comingSoonGames = Http::withHeaders(config('services.igdb'))
             ->withBody(
                 "
-                fields name, first_release_date, platforms.abbreviation, cover.url, rating;
+                fields name, first_release_date, platforms.abbreviation, cover.url;
             where first_release_date != null
             & cover.url != null
             & (first_release_date >= {$current} & first_release_date <= {$after});
