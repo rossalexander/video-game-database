@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Video Game Database</title>
     <link rel="stylesheet" href="/css/app.css">
+    @livewireStyles
 </head>
 <body class="bg-slate-900 text-white">
 <header class="border-b border-gray-800">
@@ -43,6 +44,6 @@
         Powered by <a href="#" class="text-lime-500 hover:text-lime-400">IGDB API</a>
     </div>
 </footer>
-
+@livewireScripts
 </body>
 </html>
