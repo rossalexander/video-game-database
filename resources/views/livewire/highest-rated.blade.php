@@ -1,10 +1,10 @@
 <div wire:init="loadRecentlyReviewed" class="w-full lg:w-3/4 mr-0 lg:mr-32">
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Recently Reviewed</h2>
+    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Highest Rated</h2>
     <div class="space-y-12 mt-8">
-        @forelse($recentlyReviewed as $game)
+        @forelse($games as $game)
             <div class="bg-gray-800 rounded-lg shadow-md flex p-6">
                 <div class="relative flex-none">
-                    <a href="">
+                    <a href="{{ $game['slug'] }}">
                         <img src="{{ Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) }}"
                              alt="{{$game['name']}}"
                              class="w-48 hover:opacity-75 transition-colors ease-in-out duration-150">
@@ -18,7 +18,7 @@
                     @endif
                 </div>
                 <div class="ml-12">
-                    <a href=""
+                    <a href="{{ $game['slug'] }}"
                        class="block text-lg font-semibold leading-tight hover:text-gray-400 mt-4">{{$game['name']}}</a>
                     <div class="text-gray-400 mt-1">
                         @foreach($game['platforms'] as $platform)

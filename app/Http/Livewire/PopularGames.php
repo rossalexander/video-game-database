@@ -11,21 +11,21 @@ use Livewire\Component;
 
 class PopularGames extends Component
 {
-    public $popularGames = [];
+    public $games = [];
 
     public function loadPopularGames()
     {
         $before = Carbon::now()->subMonths(6)->timestamp;
-        $after = Carbon::now()->addMonths(6)->timestamp;
+        $now = Carbon::now()->timestamp;
 
-        $popularGamesUnformatted = Cache::remember('popular-games', 7, function () use ($before, $after) {
+        $gamesRaw = Cache::remember('popular-games', 60, function () use ($before, $now) {
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
                     "
-                fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;
-            where (first_release_date >= {$before} & first_release_date < {$after})
-            & total_rating_count > 5;
-            sort total_rating_count desc;
+                fields name, cover.url, first_release_date, platforms.abbreviation, rating, slug, follows;
+            where (first_release_date >= {$before} & first_release_date <= {$now})
+            & follows != null;
+            sort follows desc;
             limit 12;",
                     "text/plain"
                 )
@@ -33,7 +33,7 @@ class PopularGames extends Component
                 ->json();
         });
 
-        $this->popularGames = $this->formatForView($popularGamesUnformatted);
+        $this->games = $this->formatGames($gamesRaw);
     }
 
     public function render()
@@ -45,7 +45,7 @@ class PopularGames extends Component
      * @param $games
      * @return Collection
      */
-    private function formatForView($games): Collection
+    private function formatGames($games): Collection
     {
         return collect($games)->map(function ($game) {
             return collect($game)->merge([

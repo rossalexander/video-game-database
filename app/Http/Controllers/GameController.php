@@ -29,7 +29,7 @@ class GameController extends Controller
         $game = Http::withHeaders(config('services.igdb'))
             ->withBody(
                 "
-                fields name, cover.url, first_release_date, platforms.abbreviation, aggregated_rating, rating, rating_count, slug, involved_companies.company.name, genres.name, aggregated_rating, summary, websites.*, videos.*, screenshots.*,
+                fields hypes, follows, name, cover.url, first_release_date, platforms.abbreviation, aggregated_rating, rating, rating_count, slug, involved_companies.company.name, genres.name, aggregated_rating, summary, websites.*, videos.*, screenshots.*,
                 similar_games.cover.url, similar_games.name, similar_games.rating, similar_games.platforms.abbreviation, similar_games.slug;
 
             where slug=\"{$slug}\";
@@ -49,7 +49,7 @@ class GameController extends Controller
         $temp = collect($game)
             ->merge([
                 'cover-image-url' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),
-                'genres' => collect($game['genres'])->pluck('name')->implode(', '),
+                'genres' => array_key_exists('genres', $game) ? collect($game['genres'])->pluck('name')->implode(', ') : null,
                 'involved-companies' => array_key_exists('rating', $game) ? collect($game['involved_companies'])[0]['company']['name'] : null,
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
                 'member-rating' => array_key_exists('rating', $game) ? round($game['rating']) . '%' : null,

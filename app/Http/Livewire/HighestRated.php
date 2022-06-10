@@ -7,25 +7,25 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class MostAnticipated extends Component
+class HighestRated extends Component
 {
     public $games = [];
 
-    public function loadMostAnticipated()
+    public function loadRecentlyReviewed()
     {
+        $before = Carbon::now()->subMonths(12)->timestamp;
         $current = Carbon::today()->timestamp;
-        $after = Carbon::today()->addMonths(6)->timestamp;
 
-        $this->games = Cache::remember('most-anticipated', 60, function () use ($current, $after) {
+        $this->games = Cache::remember('highest-rated', 60, function () use ($before, $current) {
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
                     "
-                fields name, first_release_date, platforms.abbreviation, cover.url, hypes, slug;
+                fields name, summary, first_release_date, platforms.abbreviation, cover.url, rating, total_rating_count, slug;
             where first_release_date != null
             & cover.url != null
-            & hypes != null
-            & (first_release_date >= {$current} & first_release_date <= {$after});
-            sort hypes desc;
+            & rating != null
+            & (first_release_date >= {$before} & first_release_date < {$current});
+            sort rating desc;
             limit 5;",
                     "text/plain"
                 )
@@ -34,8 +34,9 @@ class MostAnticipated extends Component
         });
     }
 
-    public function render()
+    public
+    function render()
     {
-        return view('livewire.most-anticipated');
+        return view('livewire.highest-rated');
     }
 }
