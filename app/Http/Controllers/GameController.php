@@ -83,7 +83,6 @@ class GameController extends Controller
             ])
             ->toArray();
 
-        dump($temp);
         return $temp;
     }
 }
