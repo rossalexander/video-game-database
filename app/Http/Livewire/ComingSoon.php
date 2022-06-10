@@ -13,6 +13,7 @@ class ComingSoon extends Component
     public function loadComingSoonGames()
     {
         $current = Carbon::today()->timestamp;
+        $after = Carbon::today()->addMonths(2)->timestamp;
 
         $this->comingSoonGames = Http::withHeaders(config('services.igdb'))
             ->withBody(
@@ -20,7 +21,7 @@ class ComingSoon extends Component
                 fields name, first_release_date, platforms.abbreviation, cover.url, rating;
             where first_release_date != null
             & cover.url != null
-            & first_release_date >= {$current};
+            & (first_release_date >= {$current} & first_release_date <= {$after});
             sort first_release_date asc;
             limit 5;",
                 "text/plain"
