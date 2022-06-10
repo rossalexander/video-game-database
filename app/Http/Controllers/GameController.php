@@ -25,7 +25,6 @@ class GameController extends Controller
                 "
                 fields name, first_release_date, platforms.abbreviation, cover.url, rating;
             where first_release_date != null
-            & rating != null
             & cover.url != null
             & (first_release_date >= {$before} & first_release_date < {$after});
             sort first_release_date desc;
@@ -40,11 +39,10 @@ class GameController extends Controller
                 "
                 fields name, summary, first_release_date, platforms.abbreviation, cover.url, rating, rating_count;
             where first_release_date != null
-            & rating != null
             & cover.url != null
             & (first_release_date >= {$before} & first_release_date < {$current});
             sort first_release_date desc;
-            limit 3;",
+            limit 5;",
                 "text/plain"
             )
             ->post('https://api.igdb.com/v4/games')
