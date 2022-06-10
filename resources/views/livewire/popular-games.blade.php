@@ -1,5 +1,5 @@
 <div wire:init="loadPopularGames"
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12 border-b border-gray-800 text-sm pb-16">
+     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12 border-b border-gray-800 text-sm pb-16">
     @forelse($popularGames as $game)
         <div class="mt-8">
             <div class="relative inline-block">
@@ -29,6 +29,14 @@
             </div>
         </div>
     @empty
-        <div>Loading...</div>
+        @foreach(range(1,12) as $game)
+            <div class="mt-8 animate-pulse">
+                <div class="relative inline-block">
+                    <div class="bg-gray-800 w-52 h-72"></div>
+                </div>
+                <div class="block text-transparent text-lg bg-gray-700 rounded leading-tight mt-4">Title goes here</div>
+                <div class="text-transparent bg-gray-700 rounded inline-block mt-3">Xbox One, Playstation 4</div>
+            </div>
+        @endforeach
     @endforelse
 </div>
