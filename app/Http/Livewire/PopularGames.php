@@ -17,11 +17,10 @@ class PopularGames extends Component
         $after = Carbon::now()->addMonths(2)->timestamp;
 
         $this->popularGames = Cache::remember('popular-games', 7, function () use ($before, $after) {
-            sleep(3);
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
                     "
-                fields name, first_release_date, platforms.abbreviation, cover.url, rating;
+                fields name, first_release_date, platforms.abbreviation, cover.url, rating, slug;
             where first_release_date != null
             & cover.url != null
             & (first_release_date >= {$before} & first_release_date < {$after});
