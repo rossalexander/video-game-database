@@ -39,7 +39,6 @@ class GameController extends Controller
             )
             ->post('https://api.igdb.com/v4/games')
             ->json();
-        dump($game[0]);
         abort_if(!$game, 404);
 
         return view('show', ['game' => $game[0]]);
