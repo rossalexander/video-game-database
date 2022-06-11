@@ -32,6 +32,15 @@ class HighestRated extends Component
                 ->post('https://api.igdb.com/v4/games')
                 ->json();
         });
+
+        collect($this->games)->filter(function ($game) {
+            return $game['rating'];
+        })->each(function ($game) {
+            $this->emit('highestRatedGameWithRatingAdded', [
+                'slug' => 'review-'.$game['slug'],
+                'rating' => $game['rating'] / 100
+            ]);
+        });
     }
 
     public

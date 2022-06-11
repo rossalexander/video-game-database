@@ -10,5 +10,10 @@
             @endforeach
         @endforelse
     </div>
-
 </div>
+
+@push('scripts')
+    @include('rating', [
+    'event' => 'gameWithRatingAdded'
+])
+@endpush
