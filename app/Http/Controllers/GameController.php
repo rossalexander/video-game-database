@@ -61,12 +61,12 @@ class GameController extends Controller
                     'twitter' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'twitter'))->first(),
                     'instagram' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'instagram'))->first(),
                 ],
-                'screenshots' => collect($game['screenshots'])->map(function ($screenshot) {
+                'screenshots' => array_key_exists('screenshots', $game) ? collect($game['screenshots'])->map(function ($screenshot) {
                     return [
                         'big' => Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url']),
                         'huge' => Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url']),
                     ];
-                })->take(9),
+                })->take(9) : null,
                 'similar-games' => collect($game['similar_games'])->map(function ($game) {
                     return collect($game)->merge([
                         'cover-image-url' => array_key_exists('cover', $game)

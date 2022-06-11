@@ -23,10 +23,9 @@
         </div>
 
         <div class="flex items-center mt-6 lg:mt-0">
-            <div class="relative">
-                <input type="text" class="focus:shadow-outline bg-gray-800 text-sm rounded-full px-3 py-1 w-64"
-                       placeholder="Search...">
-            </div>
+
+            <livewire:search-dropdown/>
+
             <div class="ml-6">
                 <a href="#"><img src="/media/avatar.svg" class="w-8 flex-none" alt=""></a>
             </div>
