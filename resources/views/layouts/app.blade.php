@@ -22,20 +22,10 @@
             </a>
             <a href="/" class="mt-2 lg:mt-0 text-gray-300" style="font-family: 'Comfortaa', cursive;">Video Game
                 Database</a>
-            {{--            <ul class="flex ml-0 lg:ml-16 mt-6 lg:mt-0 space-x-8">--}}
-            {{--                <li><a href="#" class="hover:text-gray-400">Games</a></li>--}}
-            {{--                <li><a href="#" class="hover:text-gray-400">Reviews</a></li>--}}
-            {{--                <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>--}}
-            {{--            </ul>--}}
         </div>
 
         <div class="flex items-center mt-6 lg:mt-0">
-
             <livewire:search-dropdown/>
-
-            {{--            <div class="ml-6">--}}
-            {{--                <a href="#"><img src="/media/avatar.svg" class="w-8 flex-none" alt=""></a>--}}
-            {{--            </div>--}}
         </div>
 
     </nav>
