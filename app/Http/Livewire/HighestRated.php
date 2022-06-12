@@ -16,7 +16,7 @@ class HighestRated extends Component
         $before = Carbon::now()->subMonths(12)->timestamp;
         $current = Carbon::today()->timestamp;
 
-        $this->games = Cache::remember('highest-rated', 60, function () use ($before, $current) {
+        $this->games = Cache::remember('highest-rated', 3600, function () use ($before, $current) {
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
                     "

@@ -16,7 +16,7 @@ class ComingSoon extends Component
         $current = Carbon::today()->timestamp;
         $after = Carbon::today()->addMonths(6)->timestamp;
 
-        $this->games = Cache::remember('coming-soon', 60, function () use ($current, $after) {
+        $this->games = Cache::remember('coming-soon', 3600, function () use ($current, $after) {
             return Http::withHeaders(config('services.igdb'))
                 ->withBody(
                     "
