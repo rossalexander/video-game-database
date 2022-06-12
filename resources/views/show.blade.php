@@ -82,9 +82,11 @@
 
             {{--                Video--}}
             @if($game['video'])
-                <div class="mt-12">
-                    <a href="{{$game['video']}}"
-                       class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-400 rounded transition ease-in-out duration-150">
+                <div x-data="{ isTrailerModalVisible: false }" class="mt-12">
+                    <button
+                        @click="isTrailerModalVisible = true"
+                        {{--                        href="{{$game['video']}}"--}}
+                        class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-400 rounded transition ease-in-out duration-150">
                         <svg class="w-6 mt-px" fill="white" viewBox="0 0 24 24" width="24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd"
@@ -93,30 +95,83 @@
                             <path d="M16 12L10 16.3301V7.66987L16 12Z" fill="currentColor"/>
                         </svg>
                         <span class="ml-2">Play Trailer</span>
-                    </a>
+                    </button>
+
+                    {{--                    Video modal--}}
+                    <template x-if="isTrailerModalVisible">
+                        <div x-cloak class="fixed z-50 inset-0 overflow-y-auto">
+                            <div
+                                class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                                <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                                    <div class="bg-gray-800 rounded">
+                                        <div class="flex justify-end pr-4 pt-2">
+                                            <button @click="isTrailerModalVisible = false"
+                                                    @keydown.escape.window="isTrailerModalVisible = false"
+                                                    class="text-3xl leading-none hover:text-gray-300">&times;
+                                            </button>
+                                        </div>
+                                        <div class="p-8">
+                                            <div class="overflow-hidden relative" style="padding-top:56.25%;">
+                                                <iframe width="560" height="315"
+                                                        class="absolute top-0 left-0 w-full h-full"
+                                                        src="https://www.youtube.com/embed/{{$game['video']}}"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             @endif
 
         </div>
     </div><!-- End game details -->
 
-    {{--        Video--}}
-    @if(array_key_exists('videos', $game))
+    {{--        Screenshots --}}
+    @if(array_key_exists('screenshots', $game))
 
         @if($game['screenshots'])
-            <div class="border-b border-gray-800 pb-12 mt-8">
+            <div x-data="{ isImageModalVisible: false, image: ''}" class="border-b border-gray-800 pb-12 mt-8">
                 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
                     @foreach($game['screenshots'] as $screenshot)
-                        <a href="{{$screenshot['huge']}}">
+                        <a @click.prevent="isImageModalVisible = true; image='{{$screenshot['huge']}}' " href="#">
                             <img src="{{ $screenshot['big']  }}" alt=""
                                  class="bg-gray-700 hover:opacity-75 transition-colors ease-in-out duration-150">
                         </a>
                     @endforeach
                 </div>
+
+                {{--                    Screenshots modal--}}
+                <template x-if="isImageModalVisible">
+                    <div x-cloak class="fixed z-50 inset-0 overflow-y-auto">
+                        <div
+                            class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                            <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                                <div class="bg-gray-800 rounded">
+                                    <div class="flex justify-end pr-4 pt-2">
+                                        <button @click="isImageModalVisible = false"
+                                                @keydown.escape.window="isImageModalVisible = false"
+                                                class="text-3xl leading-none hover:text-gray-300">&times;
+                                        </button>
+                                    </div>
+                                    <div class="p-8">
+                                        <img :src="image" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
             </div>
         @endif
-    @endif{{--        End Video--}}
+    @endif{{--        End Screenshots--}}
 
 
     {{--        Similar Games--}}

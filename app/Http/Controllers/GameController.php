@@ -54,7 +54,7 @@ class GameController extends Controller
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
                 'member-rating' => array_key_exists('rating', $game) ? round($game['rating']) : null,
                 'critic-rating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']) : null,
-                'video' => array_key_exists('videos', $game) ? 'https://youtube.com/watch/' . $game['videos'][0]['video_id'] : null,
+                'video' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/' . $game['videos'][0]['video_id'] : null,
                 'social' => [
                     'website' => collect($game['websites'])->first(),
                     'facebook' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'facebook'))->first(),
