@@ -16,20 +16,20 @@
             <a class="w-8 flex-none" href="/">
                 <img src="/media/video-game-database-logo.svg" alt="Video Game Database">
             </a>
-            <ul class="flex ml-0 lg:ml-16 mt-6 lg:mt-0 space-x-8">
-                <li><a href="#" class="hover:text-gray-400">Games</a></li>
-                <li><a href="#" class="hover:text-gray-400">Reviews</a></li>
-                <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
-            </ul>
+{{--            <ul class="flex ml-0 lg:ml-16 mt-6 lg:mt-0 space-x-8">--}}
+{{--                <li><a href="#" class="hover:text-gray-400">Games</a></li>--}}
+{{--                <li><a href="#" class="hover:text-gray-400">Reviews</a></li>--}}
+{{--                <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>--}}
+{{--            </ul>--}}
         </div>
 
         <div class="flex items-center mt-6 lg:mt-0">
 
             <livewire:search-dropdown/>
 
-            <div class="ml-6">
-                <a href="#"><img src="/media/avatar.svg" class="w-8 flex-none" alt=""></a>
-            </div>
+{{--            <div class="ml-6">--}}
+            {{--                <a href="#"><img src="/media/avatar.svg" class="w-8 flex-none" alt=""></a>--}}
+            {{--            </div>--}}
         </div>
 
     </nav>
