@@ -9,7 +9,7 @@
 
         <div class="lg:ml-12 lg:mr-64">
             <h2 class="font-semibold text-4xl mt-4 lg:mt-0">{{$game['name']}}</h2>
-            <div class="text-gray-400 mt-2">
+            <div class="text-gray-400 mt-2 space-y-1">
 
                 @if($game['genres'])
                     <p>{{$game['genres']}}</p>
@@ -25,7 +25,7 @@
 
             </div>
 
-            <div class="flex flex-wrap items-center mt-8">
+            <div class="flex flex-wrap items-center mt-8 space-x-8">
                 {{--                    Member Score--}}
                 @if($game['member-rating'])
                     <div class="flex items-center">
@@ -58,7 +58,7 @@
                     </div>
                 @endif
 
-                <div class="flex items-center space-x-4 mt-4 lg:mt-0 lg:ml-12">
+                <div class="flex items-center space-x-4 mt-4 lg:mt-0">
                     @if($game['social']['website'])
                         @include('social.website')
                     @endif
@@ -160,7 +160,7 @@
                                         </button>
                                     </div>
                                     <div class="p-8">
-                                        <img :src="image" alt="" />
+                                        <img :src="image" alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -174,20 +174,19 @@
 
 
     {{--        Similar Games--}}
-    <div class="pb-12 mt-8">
-        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Similar Games</h2>
-        {{--        Grid--}}
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12 text-sm">
+    @if($game['similar-games'])
 
-            @if($game['similar-games'])
+        <div class="pb-12 mt-8">
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Similar Games</h2>
 
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12 text-sm">
                 @foreach($game['similar-games'] as $game)
                     <x-game-card :game="$game"/>
                 @endforeach
-            @endif
 
+            </div>
+        </div>{{--    End Similar Games--}}
+    @endif
 
-        </div>
-    </div>{{--    End Similar Games--}}
 @endsection
