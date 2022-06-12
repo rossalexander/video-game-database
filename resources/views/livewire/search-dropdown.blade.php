@@ -1,7 +1,19 @@
-<div class="relative">
+<div class="relative" x-data="{isVisible: true}" @click.away="isVisible = false">
     <input wire:model.debounce.600ms="search" type="text"
+           @focus="isVisible = true"
+           x-ref="search"
+           @keydown.window="
+            if(event.keyCode === 191){
+            event.preventDefault();
+            $refs.search.focus();
+            }
+           "
+           @keydown.escape.window="isVisible = false"
+           @keydown="isVisible = true"
+           @keydown.shift.tab="isVisible = false"
            class="focus:shadow-outline bg-gray-800 text-sm rounded-full px-3 py-1 w-64"
-           placeholder="Search...">
+           placeholder="Search (Press '/')"
+    >
 
     <svg wire:loading class="absolute top-1 right-0 animate-spin -ml-1 mr-3 h-5 w-5 text-white"
          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -11,12 +23,15 @@
     </svg>
 
     @if(strlen($search) >= 2)
-        <div class="absolute z-50 bg-gray-800 text-xs rounded w-64 mt-2">
+        <div x-show="isVisible" class="absolute z-50 bg-gray-800 text-xs rounded w-64 mt-2">
             @if(count($searchResults) > 0)
                 <ul>
                     @foreach($searchResults as $game)
                         <li class="border-b border-gray-700">
                             <a href="{{$game['slug']}}"
+                               @if($loop->last)
+                                   @keydown.tab="isVisible=false"
+                               @endif
                                class="block hover:bg-gray-700 p-3 flex items-center transition ease-in-out duration-150 ">
                                 @if(isset($game['cover']))
                                     <img class="w-10 mr-4"
