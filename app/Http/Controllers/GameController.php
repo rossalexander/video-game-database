@@ -46,9 +46,10 @@ class GameController extends Controller
 
     public function formatGameForView($game)
     {
+        // todo: refactor array_key_exists check to DRY collection
         $temp = collect($game)
             ->merge([
-                'cover-image-url' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),
+                'cover-image-url' => array_key_exists('genres', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : null,
                 'genres' => array_key_exists('genres', $game) ? collect($game['genres'])->pluck('name')->implode(', ') : null,
                 'involved-companies' => array_key_exists('rating', $game) ? collect($game['involved_companies'])[0]['company']['name'] : null,
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
@@ -57,9 +58,9 @@ class GameController extends Controller
                 'video' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/' . $game['videos'][0]['video_id'] : null,
                 'social' => [
                     'website' => array_key_exists('websites', $game) ? collect($game['websites'])->first() : null,
-                    'facebook' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'facebook'))->first(),
-                    'twitter' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'twitter'))->first(),
-                    'instagram' => collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'instagram'))->first(),
+                    'facebook' => array_key_exists('websites', $game) ? collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'facebook'))->first() : null,
+                    'twitter' => array_key_exists('websites', $game) ? collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'twitter'))->first() : null,
+                    'instagram' => array_key_exists('websites', $game) ? collect($game['websites'])->filter(fn($website) => Str::contains($website['url'], 'instagram'))->first() : null,
                 ],
                 'screenshots' => array_key_exists('screenshots', $game) ? collect($game['screenshots'])->map(function ($screenshot) {
                     return [
