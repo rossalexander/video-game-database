@@ -16,15 +16,9 @@
             text: {
                 autoStyleContainer: false
             },
-            @if($event)
-            from: {color: ( params.rating / 100  > 1) ?  '#65A30D' : '#DC2626', width: 6},
+            from: {color: '#DC2626', width: 6},
             to: {color: '#65A30D', width: 6},
-            @else
-            from: {color: ({{$rating / 100 }} > 1) ?  '#65A30D' : '#DC2626', width: 6},
-            to: {color: '#65A30D', width: 6},
-            @endif
 
-            // Set default step function for all animate calls
             step: function (state, circle) {
                 circle.path.setAttribute('stroke', state.color);
                 circle.path.setAttribute('stroke-width', state.width);
@@ -35,7 +29,6 @@
                 } else {
                     circle.setText(value + '%');
                 }
-
             }
         });
 
